@@ -26,7 +26,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,11 +87,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    @Composable
-    fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
-
     }
 
     @Preview(showBackground = true)
