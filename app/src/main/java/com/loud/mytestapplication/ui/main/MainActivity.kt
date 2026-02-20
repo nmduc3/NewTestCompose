@@ -1,11 +1,10 @@
-package com.loud.mytestapplication
+package com.loud.mytestapplication.ui.main
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,6 +15,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,6 +26,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.loud.mytestapplication.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,13 +36,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            // A surface container using the 'background' color from the theme
             MainActivityScreen()
         }
     }
 
     @Composable
-    fun MainActivityScreen() {
+    fun MainActivityScreen(viewModel: MainViewModel = hiltViewModel()) {
+        // collect data from viewmodel
+        val listUserState by viewModel.listUserState.collectAsStateWithLifecycle()
+
         val image = painterResource(id = R.drawable.androidparty)
         Surface(
             modifier = Modifier.fillMaxSize(),
@@ -49,32 +54,32 @@ class MainActivity : AppCompatActivity() {
                 Image(
                     painter = image,
                     contentDescription = null,
-                    contentScale = ContentScale.Crop,
+                    contentScale = ContentScale.Companion.Crop,
                     alpha = 0.5f,
                 )
                 Column(
-                    modifier = Modifier
+                    modifier = Modifier.Companion
                         .padding(8.dp)
                         .fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    horizontalAlignment = Alignment.Companion.CenterHorizontally
                 ) {
                     Text(
                         text = stringResource(R.string.hello_android),
                         fontSize = 24.sp,
                         lineHeight = 28.sp,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier
-                            .align(alignment = Alignment.CenterHorizontally)
-                            .background(color = Color.White)
+                        textAlign = TextAlign.Companion.Center,
+                        modifier = Modifier.Companion
+                            .align(alignment = Alignment.Companion.CenterHorizontally)
+                            .background(color = Color.Companion.White)
                             .padding(16.dp)
                     )
                     Text(
                         text = stringResource(R.string.from_mainactivity),
                         fontSize = 14.sp,
                         lineHeight = 16.sp,
-                        modifier = Modifier
+                        modifier = Modifier.Companion
                             .padding(16.dp)
-                            .align(alignment = Alignment.End)
+                            .align(alignment = Alignment.Companion.End)
                     )
                     Button(onClick = {
 
