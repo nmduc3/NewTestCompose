@@ -16,22 +16,25 @@ import com.loud.mytestapplication.ui.common.AppBar
 
 @Composable
 fun PokerScreen(
-    navController: NavController,
-    viewModel: PokerViewModel = hiltViewModel()
+    navController: NavController, viewModel: PokerViewModel = hiltViewModel()
 ) {
     val listUserState by viewModel.listUserState.collectAsStateWithLifecycle()
     LaunchedEffect(Unit) {
         viewModel.handleIntent(PokerIntent.LoadUserData)
     }
-    PokerScreenContent()
+    PokerScreenContent(
+        backClick = { navController.popBackStack() }
+    )
 }
 
 @Preview
 @Composable
-fun PokerScreenContent() {
+fun PokerScreenContent(
+    backClick: () -> Unit = {}
+) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        AppBar(stringResource(R.string.poker))
+        AppBar(stringResource(R.string.poker), backClick = backClick)
     }
 }
