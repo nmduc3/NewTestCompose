@@ -1,4 +1,4 @@
-package com.loud.mytestapplication.ui.main.state
+package com.loud.mytestapplication.ui.poker
 
 data class ListUserState(
     val users: List<String> = emptyList(),
