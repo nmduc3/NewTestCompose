@@ -46,4 +46,6 @@
     <string name="from_mainactivity">From MainActivity</string>
     <string name="firstfragment">FirstFragment</string>
     <string name="Secondfragment">SecondFragment</string>
+    <string name="poker">Poker</string>
+    <string name="analytics">Analytics</string>
 </resources>
