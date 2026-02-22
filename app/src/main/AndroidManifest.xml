@@ -10,11 +10,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name=".MyApplication"
-        android:theme="@style/Theme.MyTestApplication">
+        android:theme="@style/Base.Theme.MyTestApplication">
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.MyTestApplication">
+            android:theme="@style/Base.Theme.MyTestApplication">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
